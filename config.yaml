@@ -1,0 +1,29 @@
+files:
+  # This can be named anything that makes sense to you. But have to include the
+  # following properties:
+  #   directory: the directory to watch
+  #   change: change to watch for (modification, creation). Modification includes
+  #           creation.
+  #   pattern [optional]: a glob pattern to filter the files to be watched.
+  #           defaults to *
+  important_files:
+    directory: "/opt/stuff/important/"
+    change: "modification"
+  somewhat_important_texts:
+    directory: "/opt/stuff/less_important/"
+    change: "creation"
+    pattern: "*.txt"
+
+notifications:
+  # Notify on: ERROR, INFO
+  level: error
+  # Period of error notification in hours.
+  #   Accepts fraction of hours: 0.5 -> half an hour
+  #   If omitted, error notifications are sent as soon as they occur
+  error_period: 1
+  # Period of info notification in hours.
+  #   Accepts fraction of hours: 0.5 -> half an hour
+  #   If omitted, info notifications are sent as soon as they occur
+  #info_period: 1
+  # List of notification receivers
+  email_receivers: ["example@example.com", "example2@mydomain.com"]
