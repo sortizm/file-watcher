@@ -15,7 +15,7 @@ files:
     pattern: '*.txt'
 
 notifications:
-  # Notify on: ERROR, INFO
+  # Notify on: error, info
   level: error
   # Period of error notification in hours.
   #   Accepts fraction of hours: 0.5 -> half an hour
