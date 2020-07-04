@@ -1,19 +1,23 @@
+from dataclasses import dataclass
+from typing import List
+
+
+@dataclass
 class FilesConfig:
+    """
+    Configuration for the files to be watched
+    """
+    directory: str
+    change: str
+    pattern: str = None
 
-    def __init__(self, directory, change, pattern=None):
-        self.directory = directory
-        self.change = change
-        self.pattern = pattern
 
-
+@dataclass
 class NotificationsConfig:
-
-    def __init__(self,
-                 level,
-                 email_receivers,
-                 error_period=None,
-                 info_period=None):
-        self.level = level
-        self.error_period = error_period
-        self.info_period = info_period
-        self.email_receivers = email_receivers
+    """
+    Configuration for the notifications
+    """
+    level: str
+    email_receivers: List[str]
+    error_period: float = None
+    info_period: float = None

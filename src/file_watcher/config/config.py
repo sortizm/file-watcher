@@ -1,12 +1,18 @@
 """
 Configuration of the file-watcher
 """
+import logging
+from dataclasses import dataclass
 from typing import List
 from typing.io import TextIO
+
+import yaml
+from yaml import Loader
 
 from .config_elements import FilesConfig, NotificationsConfig
 
 
+@dataclass
 class Config:
     """
     The configuration object
@@ -18,29 +24,31 @@ class Config:
         * files: the files configuration
         * notifications: the notifications configuration
     """
-
-    def __init__(self,
-                 files: List[FilesConfig],
-                 notifications: NotificationsConfig):
-        """
-        Initialises the config object
-
-        Args:
-            files: the files configuration
-            notifications: the notifications configuration
-        """
-        self.files = files
-        self.notifications = notifications
+    files: List[FilesConfig]
+    notifications: NotificationsConfig
 
     @classmethod
-    def from_config_file(cls, config_file_handler: TextIO) -> 'Config':
+    def from_config_file(cls, text_stream: TextIO) -> 'Config':
         """
 
         Args:
-            config_file_handler: the config file handler
+            text_stream: the configuration
 
         Returns:
             an object of this class
         """
-        pass
+        files = []
+        notifications = None
+        for key, val in yaml.load(text_stream, Loader=Loader).items():
+            logging.debug(f'Config element {key!r}: {val}')
+            if key == 'files':
+                files = [FilesConfig(**config) for config in
+                         val.values()]
+            elif key == 'notifications':
+                notifications_config = val
+                notifications = NotificationsConfig(**notifications_config)
+            else:
+                raise ValueError(f'Unexpected element {key}')
+
+        return cls(files, notifications)
 
