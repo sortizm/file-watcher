@@ -11,6 +11,8 @@ watchdog = "^0.10.2"
 pyyaml = "^5.3.1"
 
 [tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+assertpy = "^1.0"
 
 [tool.poetry.scripts]
 file-watcher = "file_watcher.console:main"
