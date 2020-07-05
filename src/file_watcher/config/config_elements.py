@@ -17,7 +17,5 @@ class NotificationsConfig:
     """
     Configuration for the notifications
     """
-    level: str
     email_receivers: List[str]
-    error_period: float = None
-    info_period: float = None
+    period: float = None

@@ -15,15 +15,9 @@ files:
     pattern: '*.txt'
 
 notifications:
-  # Notify on: error, info
-  level: error
-  # Period of error notification in hours.
+  # Period of notification in hours.
   #   Accepts fraction of hours: 0.5 -> half an hour
-  #   If omitted, error notifications are sent as soon as they occur
-  error_period: 1
-  # Period of info notification in hours.
-  #   Accepts fraction of hours: 0.5 -> half an hour
-  #   If omitted, info notifications are sent as soon as they occur
-  #info_period: 1
+  #   If omitted, notifications are sent as soon as they occur
+  period: 1
   # List of notification receivers
   email_receivers: [example@example.com, example2@mydomain.com]
