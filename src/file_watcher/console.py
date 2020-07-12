@@ -16,7 +16,7 @@ LOG_LEVEL = [ERROR, INFO, DEBUG]
 @click.option('-v', 'verbosity',
               count=True, type=click.IntRange(0, 2, clamp=True),
               help='Verbosity (v, vv)')
-def main(config_file, verbosity):
+def run(config_file, verbosity):
     """Configurable File watcher & notifier"""
     logging.basicConfig(level=LOG_LEVEL[verbosity])
     with open(config_file, 'r') as config_file_handler:
