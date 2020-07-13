@@ -71,3 +71,14 @@ def test_set_verbosity_debug(mocked_logging_basic_config):
 
     # then
     mocked_logging_basic_config.assert_called_with(level=DEBUG)
+
+
+def test_set_verbosity_is_clamped_to_debug(mocked_logging_basic_config):
+    # given
+    runner = CliRunner()
+
+    # when
+    runner.invoke(run, ['-c', 'my_config.yaml', '-vvv'])
+
+    # then
+    mocked_logging_basic_config.assert_called_with(level=DEBUG)
