@@ -5,14 +5,36 @@ from assertpy import assert_that
 from file_watcher.config.config import Config
 from file_watcher.config.config_elements import FilesConfig, NotificationsConfig
 
-UNEXPECTED_ELEMENT_CONFIGURATION = """
+UNEXPECTED_ELEMENT_CONFIGURATION_MY_ELEMENT = """
 files:
   my_files:
     directory: /some/stuff
     change: modification
 notifications:
   email_receivers: [steve@abc.com]
-my_new_unexpected_element:
+my_element:
+  info: hello
+"""
+
+UNEXPECTED_ELEMENT_CONFIGURATION_FILA = """
+files:
+  my_files:
+    directory: /some/stuff
+    change: modification
+notifications:
+  email_receivers: [steve@abc.com]
+fila:
+  info: hello
+"""
+
+UNEXPECTED_ELEMENT_CONFIGURATION_PEOPLE = """
+files:
+  my_files:
+    directory: /some/stuff
+    change: modification
+notifications:
+  email_receivers: [steve@abc.com]
+people:
   info: hello
 """
 
@@ -42,9 +64,27 @@ notifications:
 """
 
 
-def test_value_error_on_unexpected_element():
+def test_value_error_on_unexpected_element_my_element():
     # given
-    config_stream = StringIO(UNEXPECTED_ELEMENT_CONFIGURATION)
+    config_stream = StringIO(UNEXPECTED_ELEMENT_CONFIGURATION_MY_ELEMENT)
+
+    # when
+    with pytest.raises(ValueError, match='.* my_element'):
+        Config.from_config_file(config_stream)
+
+
+def test_value_error_on_unexpected_element_fila():
+    # given
+    config_stream = StringIO(UNEXPECTED_ELEMENT_CONFIGURATION_FILA)
+
+    # when
+    with pytest.raises(ValueError, match='.* my_new_unexpected_element'):
+        Config.from_config_file(config_stream)
+
+
+def test_value_error_on_unexpected_element_people():
+    # given
+    config_stream = StringIO(UNEXPECTED_ELEMENT_CONFIGURATION_PEOPLE)
 
     # when
     with pytest.raises(ValueError, match='.* my_new_unexpected_element'):
