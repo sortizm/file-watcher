@@ -78,7 +78,7 @@ def test_value_error_on_unexpected_element_fila():
     config_stream = StringIO(UNEXPECTED_ELEMENT_CONFIGURATION_FILA)
 
     # when
-    with pytest.raises(ValueError, match='.* my_new_unexpected_element'):
+    with pytest.raises(ValueError, match='.* fila'):
         Config.from_config_file(config_stream)
 
 
@@ -87,7 +87,7 @@ def test_value_error_on_unexpected_element_people():
     config_stream = StringIO(UNEXPECTED_ELEMENT_CONFIGURATION_PEOPLE)
 
     # when
-    with pytest.raises(ValueError, match='.* my_new_unexpected_element'):
+    with pytest.raises(ValueError, match='.* people'):
         Config.from_config_file(config_stream)
 
 
