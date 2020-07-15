@@ -3,3 +3,9 @@
 *egg-info
 __pycache__/
 dist
+
+.nox/
+
+# Mutation testing
+mutation.html
+session.sqlite
