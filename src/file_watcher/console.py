@@ -14,7 +14,7 @@ LOG_LEVEL = [ERROR, INFO, DEBUG]
               required=True,
               help='Configuration file to use')
 @click.option('-v', 'verbosity',
-              count=True, type=click.IntRange(0, 2, clamp=True),
+              count=True, type=click.IntRange(max=2, clamp=True),
               help='Verbosity (v, vv)')
 def run(config_file, verbosity):
     """Configurable File watcher & notifier"""
